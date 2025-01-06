@@ -7,7 +7,7 @@ export const login = async (req: Request, res: Response) => {
   // If the user exists and the password is correct, return a JWT token
   //first check if username exists
   const { username, password } = req.body;
-  const user = await User.findOne({where: username});
+  const user = await User.findOne({where: { username }});
   if (user) {//user exists
     //then check if username and password match
     const passwordIsValid = await bcrypt.compare(password, user.password);
